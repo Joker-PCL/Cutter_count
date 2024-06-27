@@ -31,11 +31,24 @@ extern lv_obj_t * ui_Main;
 extern lv_obj_t * ui_Panel9;
 extern lv_obj_t * ui_Panel11;
 extern lv_obj_t * ui_Label13;
+extern lv_obj_t * ui_Image2;
 extern lv_obj_t * ui_Panel12;
 extern lv_obj_t * ui_CPM;
+extern lv_obj_t * ui_Panel3;
+extern lv_obj_t * ui_CPMtimePanel;
+extern lv_obj_t * ui_CPMtime;
+extern lv_obj_t * ui_LedCPMtime;
+extern lv_obj_t * ui_CPMtimeLabel;
+extern lv_obj_t * ui_Panel4;
+extern lv_obj_t * ui_CPMcountPanel;
+extern lv_obj_t * ui_CPMcount;
+extern lv_obj_t * ui_LedCPMcount;
+extern lv_obj_t * ui_CPMcountLabel;
+extern lv_obj_t * ui_Label5;
 extern lv_obj_t * ui____initial_actions0;
 
 
+LV_IMG_DECLARE(ui_img_1989276256);    // assets/search-engine-optimization.png
 LV_IMG_DECLARE(ui_img_home_22_png);    // assets/home 22.png
 
 
@@ -47,6 +60,8 @@ LV_FONT_DECLARE(ui_font_font360);
 LV_FONT_DECLARE(ui_font_font500);
 LV_FONT_DECLARE(ui_font_Fontth100);
 LV_FONT_DECLARE(ui_font_Fontth35);
+LV_FONT_DECLARE(ui_font_Font340);
+
 
 
 void ui_init(void);
