@@ -4,7 +4,7 @@
  * Opts: --bpp 1 --size 340 --font D:/Projct_Toey/PlatformIO/Cutter_count/SquareLine/assets/ChakraPetch-SemiBold.ttf -o D:/Projct_Toey/PlatformIO/Cutter_count/SquareLine/assets\ui_font_Font1.c --format lvgl -r 0x20-0x7f --no-compress --no-prefilter
  ******************************************************************************/
 
-#include "../ui.h"
+#include "ui.h"
 
 #ifndef UI_FONT_FONT1
 #define UI_FONT_FONT1 1

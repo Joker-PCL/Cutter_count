@@ -1,6 +1,8 @@
 {
     "files.associations": {
-        "functional": "cpp"
+        "functional": "cpp",
+        "ui.h": "c",
+        "cmath": "cpp"
     },
     "cmake.sourceDirectory": "D:/Projct_Toey/PlatformIO/Cutter_count/src/ui"
 }

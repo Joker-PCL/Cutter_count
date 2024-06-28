@@ -9,7 +9,7 @@
 #include "./gui/gui.h"
 #include <EEPROM.h>
 
-#define CUTTER_SENSOR 11
+#define CUTTER_SENSOR 13
 
 int CUR_CUTTER_SENSOR = 0;  // ค่าเซ็นเซอร์ปัจจุบัน
 int PREV_CUTTER_SENSOR = 0; // ค่าเซ็นเซอร์ก่อนหน้า
@@ -36,24 +36,30 @@ void loop()
 {
   // ห้ามลบ
   lv_timer_handler();
-  delay(5);
+  // delay(5);
 
   CUR_CUTTER_SENSOR = digitalRead(CUTTER_SENSOR); // อ่านค่าจากเซ็นเซอร์
+
   if (CUR_CUTTER_SENSOR == 0 && PREV_CUTTER_SENSOR == 1)
   {
     unsigned long CPS = millis() - CYCLE_TIME; // เปรียบเทียบเวลาในรอบการตัดเป็น มิลลิวินาที
-    int CPM = (60UL * 1000UL) / CPS;           // คำนวนจำนวนตัดต่อนาที 1 นาที หาร กับเวลาในรอบการตัด
+    float CPM_F = float(60UL * 1000UL) / float(CPS);  // คำนวนจำนวนตัดต่อนาที 1 นาที หาร กับเวลาในรอบการตัด
+    int CPM = ceil(CPM_F);                             // คำนวนจำนวนตัดต่อนาที 1 นาที หาร กับเวลาในรอบการตัด
     CYCLE_TIME = millis();                     // รีเซ็ตตัวจับเวลา
     TIMEOUT = millis();                        // รีเซ็ตเวลา timeout
 
-    isRunning = true; // สถานะการทำงาน -> true
-    CPM_COUNT++;      // เพิ่มค่าจำนวนการตัดใน 1 นาที
+    isRunning = true;                                          // เปลี่ยนสถานะการทำงาน -> true
+    CPM_COUNT++;                                               // เพิ่มค่าจำนวนการตัดใน 1 นาที
     lv_label_set_text(ui_CPMcount, String(CPM_COUNT).c_str()); // อัพเดทหน้าจอ CPM_COUNT
 
-    Serial.print("CPM: ");
+    Serial.print("CPS: ");
+    Serial.print(CPS);
+    Serial.print(", CPM_F: ");
+    Serial.print(CPM_F);
+    Serial.print(", CPM: ");
     Serial.print(CPM);
     Serial.print(", Total CPM: ");
-    Serial.println(CPM);
+    Serial.println(CPM_COUNT);
 
     LED_CUTTER_SENSOR_TIME = millis();
     lv_obj_set_style_bg_color(ui_LedCPMcount, lv_color_hex(0x53E903), 0);
@@ -68,15 +74,16 @@ void loop()
     lv_obj_set_style_bg_color(ui_LedCPMcount, lv_color_hex(0x1E3D0E), 0);
   }
 
-  // หากไม่มีสัญญานจากเซ็นเซอร์ภายใน 10 วินาที ให้รีเซ็ตค่า CPM เป็น 0
-  if (millis() - TIMEOUT >= 7000UL)
+  // หากไม่มีสัญญานจากเซ็นเซอร์ภายใน 10 วินาที ให้รีเซ็ตค่า CPM เป็น 0 และ สถานะการทำงาน -> true
+  if (millis() - TIMEOUT >= 3000UL && isRunning)
   {
-    isRunning = false;                            // สถานะการทำงาน -> false
-    lv_label_set_text(ui_CPM, String(0).c_str()); // อัพเดทหน้าจอ CPM
+    isRunning = false;                                 // เปลี่ยนสถานะการทำงาน -> false
+    lv_label_set_text(ui_CPM, String(0).c_str());      // อัพเดทหน้าจอ CPM
     lv_label_set_text(ui_CPMtime, String(60).c_str()); // อัพเดทหน้าจอ CPM_COUNT
     lv_label_set_text(ui_CPMcount, String(0).c_str()); // อัพเดทหน้าจอ CPM_COUNT
   }
 
+  //  เก็บค่าเซ็นต์เซอร์ ทุกๆ 1 นาที หาก สถานะการทำงาน -> true
   if (millis() - CPM_COUNT_TIME <= 60000UL && isRunning)
   {
     // เปิดไฟสถานะตัวจับเวลา

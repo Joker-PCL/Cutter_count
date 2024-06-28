@@ -4,7 +4,7 @@
  * Opts: --bpp 4 --size 35 --font C:/Users/hr/OneDrive/เอกสาร/SquareLine/assets/Kanit-Regular.ttf -o C:/Users/hr/OneDrive/เอกสาร/SquareLine/assets\ui_font_Fontth35.c --format lvgl -r 0x20-0x7f -r 0x0E00-0x0E7F --no-compress --no-prefilter
  ******************************************************************************/
 
-#include "../ui.h"
+#include "ui.h"
 
 #ifndef UI_FONT_FONTTH35
 #define UI_FONT_FONTTH35 1

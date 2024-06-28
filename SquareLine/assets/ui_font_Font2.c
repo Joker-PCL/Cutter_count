@@ -4,7 +4,7 @@
  * Opts: --bpp 4 --size 60 --font C:/Users/hr/OneDrive/เอกสาร/SquareLine/assets/NotoSansThai-Bold.ttf -o C:/Users/hr/OneDrive/เอกสาร/SquareLine/assets\ui_font_Font2.c --format lvgl -r 0x20-0x7f -r 0x0E00-0x0E7F --no-compress --no-prefilter
  ******************************************************************************/
 
-#include "../ui.h"
+#include "ui.h"
 
 #ifndef UI_FONT_FONT2
 #define UI_FONT_FONT2 1
