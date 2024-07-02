@@ -53,14 +53,9 @@ LV_IMG_DECLARE(ui_img_home_22_png);    // assets/home 22.png
 
 
 
-LV_FONT_DECLARE(ui_font_Font1);
-LV_FONT_DECLARE(ui_font_Font2);
-LV_FONT_DECLARE(ui_font_Font340);
-LV_FONT_DECLARE(ui_font_font350);
-LV_FONT_DECLARE(ui_font_font360);
-LV_FONT_DECLARE(ui_font_font500);
-LV_FONT_DECLARE(ui_font_Fontth100);
-LV_FONT_DECLARE(ui_font_Fontth35);
+LV_FONT_DECLARE(ui_font_NotoSansTH60Bold);
+LV_FONT_DECLARE(ui_font_Kanit35);
+LV_FONT_DECLARE(ui_font_CPM300);
 
 
 
